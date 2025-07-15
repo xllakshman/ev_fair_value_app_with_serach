@@ -5,18 +5,6 @@ import yfinance as yf
 st.set_page_config(page_title="Stock Fair Value Analyzer", layout="wide")
 st.title("📈 Stock Fair Value Estimator (EV/EBITDA Method)")
 
-st.markdown("## 🔍 On-Demand Stock Valuation (EV Method)")
-search_ticker = st.text_input("Enter a stock ticker (e.g., AAPL, INFY.NS)")
-
-if search_ticker:
-    st.info(f"Fetching valuation for {search_ticker}...")
-    result = ev_valuation(search_ticker.upper())
-    if result:
-        st.success("Valuation complete!")
-        st.dataframe(pd.DataFrame([result]), use_container_width=True)
-    else:
-        st.error("Unable to fetch data or calculate fair value for this ticker.")
-
 
 GITHUB_CSV_URL = "https://raw.githubusercontent.com/xllakshman/ev_fair_value_app.py/main/stock_list.csv"
 
@@ -89,6 +77,18 @@ def ev_valuation(ticker):
     except:
         return None
 
+st.markdown("## 🔍 On-Demand Stock Valuation (EV Method)")
+search_ticker = st.text_input("Enter a stock ticker (e.g., AAPL, INFY.NS)")
+if search_ticker:
+    st.info(f"Fetching valuation for {search_ticker}...")
+    result = ev_valuation(search_ticker.upper())
+    if result:
+        st.success("Valuation complete!")
+        st.dataframe(pd.DataFrame([result]), use_container_width=True)
+    else:
+        st.error("Unable to fetch data or calculate fair value for this ticker.")
+
+
 def process_symbols(df):
     results = []
     for ticker in df["Symbol"]:
@@ -129,6 +129,8 @@ elif run_default or (uploaded_file is None and st.session_state["output_df"] is 
             st.session_state["csv_data"] = output_df.to_csv(index=False).encode("utf-8")
     except:
         st.error("Failed to load from GitHub.")
+
+
 
 # Display result in tabs with filter
 if st.session_state["output_df"] is not None:
