@@ -3,7 +3,7 @@ import pandas as pd
 import yfinance as yf
 
 st.set_page_config(page_title="Stock Fair Value Analyzer", layout="wide")
-st.title("📈 Stock Fair Value Estimator (EV/EBITDA Method)")
+st.title("📈 Stock Fair Value Estimator")
 
 
 GITHUB_CSV_URL = "https://raw.githubusercontent.com/xllakshman/ev_fair_value_app_with_serach/main/stock_list.csv"
@@ -78,7 +78,7 @@ def ev_valuation(ticker):
     except:
         return None
 
-st.markdown("## 🔍 On-Demand Stock Valuation (EV Method)")
+st.markdown("## 🔍 On-Demand Stock Valuation")
 search_ticker = st.text_input("Enter a stock ticker in Capitals(e.g., AAPL, INFY.NS)")
 if search_ticker:
     st.info(f"Fetching valuation for {search_ticker}...")
