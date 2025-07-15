@@ -3,7 +3,7 @@ import pandas as pd
 import yfinance as yf
 
 st.set_page_config(page_title="Stock Fair Value Analyzer", layout="wide")
-st.title("📈 Stock Fair Value Estimator")
+st.title("📈 India and USA Stock Fair Value Estimator")
 
 
 GITHUB_CSV_URL = "https://raw.githubusercontent.com/xllakshman/ev_fair_value_app_with_serach/main/stock_list.csv"
