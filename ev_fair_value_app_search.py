@@ -28,6 +28,7 @@ def get_fair_value(ticker, growth_rate=0.10):
 
 def ev_valuation(ticker):
     try:
+        ticker = ticker.upper()
         fair_price, current_price = get_fair_value(ticker)
         if fair_price is None or current_price is None:
             return None
@@ -78,7 +79,7 @@ def ev_valuation(ticker):
         return None
 
 st.markdown("## 🔍 On-Demand Stock Valuation (EV Method)")
-search_ticker = st.text_input("Enter a stock ticker (e.g., AAPL, INFY.NS)")
+search_ticker = st.text_input("Enter a stock ticker in Capitals(e.g., AAPL, INFY.NS)")
 if search_ticker:
     st.info(f"Fetching valuation for {search_ticker}...")
     result = ev_valuation(search_ticker)
